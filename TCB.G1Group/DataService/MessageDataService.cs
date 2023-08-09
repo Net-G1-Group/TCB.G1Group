@@ -10,7 +10,7 @@ public class MessageDataService : IMessageDataService
         throw new NotImplementedException();
     }
 
-    public async Task<Message> UpDate(Message data)
+    public async Task<Message> Update(Message data)
     {
         throw new NotImplementedException();
     }
