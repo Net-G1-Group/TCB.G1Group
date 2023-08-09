@@ -11,14 +11,14 @@ public class DataProvider
         _connectionString = connectionString;
     }
 
-    public NpgsqlConnection CreateNewConnection()
+    public async Task<NpgsqlConnection> CreateNewConnection()
     {
         return new NpgsqlConnection(this._connectionString);
     }
 
     public async Task<NpgsqlDataReader>ExecuteWithResult(string query, NpgsqlParameter[]? parameters)
     {
-        var connection = this.CreateNewConnection();
+        var connection = await this.CreateNewConnection();
         await connection.OpenAsync();
 
         var command = new NpgsqlCommand(query, connection);
@@ -32,7 +32,7 @@ public class DataProvider
     
     public async Task<int> ExecuteNonResult(string query, NpgsqlParameter[]? parameters)
     {
-        var connection = this.CreateNewConnection();
+        var connection =await this.CreateNewConnection();
         await connection.OpenAsync();
 
         var command = new NpgsqlCommand(query, connection);
