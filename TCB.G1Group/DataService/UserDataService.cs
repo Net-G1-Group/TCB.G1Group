@@ -30,7 +30,7 @@ public class UserDataService:DataProvider,IUserDataService
     {
         await this.ExecuteNonResult(UserDataQuerys.updateQuery, new NpgsqlParameter[]
         {
-            
+            new NpgsqlParameter("@p0",Id),
             new NpgsqlParameter("@p1", data.PhoneNumber),
             new NpgsqlParameter("@p2", data.Password),
             new NpgsqlParameter("@p4", data.TelegramClientId),
