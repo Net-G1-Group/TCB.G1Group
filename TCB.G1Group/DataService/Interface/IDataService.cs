@@ -4,7 +4,7 @@ public interface IDataService<T>
 {
     public Task<T> Create(T data);
 
-    public Task<T> UpDate(T data);
+    public Task<T> Update(T data);
 
     public Task<T> Delete(T data);
 
