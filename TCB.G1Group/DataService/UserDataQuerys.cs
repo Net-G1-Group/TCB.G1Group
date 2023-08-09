@@ -13,5 +13,5 @@ public static class UserDataQuerys
     public static string selectByLoginAndPassword = $"SELECT * FROM {tableName} WHERE phone_number = @p0 and password = @p1;";
     public static string insertQuery =
         $"INSERT INTO {tableName} (telegram_client_id,phone_number,password) VALUES ( @p1, @p2, @p3) RETURNING *;";
-    private static string updateQuery = $"UPDATE {tableName} SET (phone_number,password) VALUES (@p1,@p2) RETURNING *;";
+    public  static string updateQuery = $"UPDATE {tableName} SET (phone_number,password) VALUES (@p1,@p2) RETURNING *;";
 }
