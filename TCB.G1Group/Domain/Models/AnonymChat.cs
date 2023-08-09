@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using TCB.G1Group.Domain.Enums;
 
-namespace TCB.G1Group.Domain.Modles;
+namespace TCB.G1Group.Domain.Models;
 
 public class AnonymChat : ModelBase
 {
