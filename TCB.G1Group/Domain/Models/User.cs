@@ -1,8 +1,9 @@
 using System.ComponentModel;
+using TCB.G1Group.Domain.Models;
 
 namespace TCB.G1Group.Domain.Modles;
 
-public class User
+public class User : ModelBase
 {
     [Description("client_id")]
     public long TelegramClientId { get; set; }
