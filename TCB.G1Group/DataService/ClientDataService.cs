@@ -28,11 +28,11 @@ public class ClientDataService : DataProvider, IDataService<Client>  , IClientDa
         return await FindById(data.Id);
     }
 
-    public async Task<Client> Update(Client data)
+    public async Task<Client> Update( long id,Client data)
     {
         var result = await this.ExecuteNonResult(ClientQuery.UpdateQuery, new NpgsqlParameter[]
         {
-            new NpgsqlParameter("@p0", data.Id),
+            new NpgsqlParameter("@p0", id),
             new NpgsqlParameter("@p1", data.UserId),
             new NpgsqlParameter("@p2", data.NickName),
             new NpgsqlParameter("@p3", data.Status),
@@ -42,12 +42,12 @@ public class ClientDataService : DataProvider, IDataService<Client>  , IClientDa
         return await FindById(data.Id);
     }
 
-    public async Task<Client> Delete(Client data)
+    public async Task<Client> Delete(long id)
     {
-        Client client = await this.FindById(data.Id);
+        Client client = await this.FindById(id);
         var result = await this.ExecuteWithResult(ClientQuery.DeleteQuery, new NpgsqlParameter[]
         {
-            new NpgsqlParameter("@p0", data.Id)
+            new NpgsqlParameter("@p0", id)
         });
 
         return client;
