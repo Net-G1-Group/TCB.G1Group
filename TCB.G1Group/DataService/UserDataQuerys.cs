@@ -11,5 +11,5 @@ public static class UserDataQuerys
     private static string selectByIdQuery = $"SELECT * FROM {tableName} WHERE id = @p0";
     private static string selectByChatIdQuery = $"SELECT * FROM {tableName} WHERE telegram_client_id= @p0";
     private static string selectByLoginAndPassword = $"SELECT * FROM {tableName} WHERE phone_number = @p0 and password = @p1;";
-    
+     
 }
