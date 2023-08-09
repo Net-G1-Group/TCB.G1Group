@@ -66,7 +66,7 @@ public class UserDataService:DataProvider,IUserDataService
         return result.ElementAtOrDefault(0);
     }
 
-    public async Task<User> FindPhoneAndPassword(string phoneNumber, string password)
+    public async Task<User> FindPhoneAndPassword(string? phoneNumber, string password)
     {
         var reader = await this.ExecuteWithResult(UserDataQuerys.selectByLoginAndPassword, new NpgsqlParameter[]
         {

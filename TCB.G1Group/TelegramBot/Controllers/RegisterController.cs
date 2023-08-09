@@ -1,11 +1,15 @@
+using TCB.G1Group.Domain.Modles;
 using TCB.G1Group.TelegramBot.Managers;
 
 namespace TCB.G1Group.TelegramBot.Controllers;
 
 public class RegisterController:ControllerBase
 {
-    public RegisterController(ControllerManager controllerManager) : base(controllerManager)
+    private readonly AuthService _authService;
+
+    public RegisterController(ControllerManager controllerManager,AuthService authService) : base(controllerManager)
     {
+        _authService = authService;
     }
 
     protected override async Task UpdateHandler(Context context)
@@ -42,7 +46,7 @@ public class RegisterController:ControllerBase
         context.Session.Action = nameof(RegisterStepFirst);
     }
 
-    public async Task RegisterStepFirst(Context context)
+    private async Task RegisterStepFirst(Context context)
     {
         if (string.IsNullOrEmpty(context.Update.Message?.Text))
         {
@@ -55,13 +59,19 @@ public class RegisterController:ControllerBase
 
     }
 
-    public async Task RegisterStepLast(Context context)
+    private async Task RegisterStepLast(Context context)
     {
         if (string.IsNullOrEmpty(context.Update.Message?.Text))
         {
             await Extension.SendTextMessage(context, "Enter Your Password");
             return;
         }
+
+        await _authService.RegisterUser(new User()
+        {
+            Password = context.Update.Message.Text,
+            PhoneNumber = context.Session.AuthView.PhoneNumber
+        });
 
         context.Session.Action = null;
         context.Session.Controller = null;

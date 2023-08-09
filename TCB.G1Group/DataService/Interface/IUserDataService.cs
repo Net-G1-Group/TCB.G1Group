@@ -4,6 +4,6 @@ namespace TCB.G1Group.DataService.Interface;
 
 public interface IUserDataService:IDataService<User>
 {
- public Task<User> FindPhoneAndPassword(string phoneNumber,string password);
+ public Task<User> FindPhoneAndPassword(string? phoneNumber,string password);
  
 }
