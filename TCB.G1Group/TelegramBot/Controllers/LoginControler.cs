@@ -4,8 +4,11 @@ namespace TCB.G1Group.TelegramBot.Controllers;
 
 public class LoginControler:ControllerBase
 {
-    public LoginControler(ControllerManager controllerManager) : base(controllerManager)
+    private readonly AuthService _authService;
+
+    public LoginControler(ControllerManager controllerManager,AuthService authService) : base(controllerManager)
     {
+        _authService = authService;
     }
 
     protected override async Task UpdateHandler(Context context)
