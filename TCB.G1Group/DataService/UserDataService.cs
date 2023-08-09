@@ -26,11 +26,11 @@ public class UserDataService:DataProvider,IUserDataService
         return result.ElementAtOrDefault(0);
     }
 
-    public async Task<User> Update(User data)
+    public async Task<User> Update(long Id,User data)
     {
         await this.ExecuteNonResult(UserDataQuerys.updateQuery, new NpgsqlParameter[]
         {
-            
+            new NpgsqlParameter("@p0",Id),
             new NpgsqlParameter("@p1", data.PhoneNumber),
             new NpgsqlParameter("@p2", data.Password),
             new NpgsqlParameter("@p4", data.TelegramClientId),
@@ -38,9 +38,9 @@ public class UserDataService:DataProvider,IUserDataService
         return data; 
     }
 
-    public async Task<User> Delete(User data)
+    public async Task<User> Delete(long id)
     {
-        return data;
+        return await FindById(id);
     }
 
     public async Task<List<User>> GetAll()
