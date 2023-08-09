@@ -26,7 +26,7 @@ public class UserDataService:DataProvider,IUserDataService
         return result.ElementAtOrDefault(0);
     }
 
-    public async Task<User> Update(User data)
+    public async Task<User> Update(long Id,User data)
     {
         await this.ExecuteNonResult(UserDataQuerys.updateQuery, new NpgsqlParameter[]
         {
@@ -38,9 +38,9 @@ public class UserDataService:DataProvider,IUserDataService
         return data; 
     }
 
-    public async Task<User> Delete(User data)
+    public async Task<User> Delete(long id)
     {
-        return data;
+        return await FindById(id);
     }
 
     public async Task<List<User>> GetAll()
