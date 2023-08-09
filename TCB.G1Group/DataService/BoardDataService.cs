@@ -16,11 +16,6 @@ public class BoardDataService:DataProvider,IBoardDataService
         throw new NotImplementedException();
     }
 
-    public async Task<BoardModel> UpDate(BoardModel data)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<BoardModel> Delete(BoardModel data)
     {
         throw new NotImplementedException();
