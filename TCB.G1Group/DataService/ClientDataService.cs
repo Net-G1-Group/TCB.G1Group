@@ -28,7 +28,7 @@ public class ClientDataService : DataProvider, IDataService<Client>  , IClientDa
         return await FindById(data.Id);
     }
 
-    public async Task<Client> UpDate(Client data)
+    public async Task<Client> Update(Client data)
     {
         var result = await this.ExecuteNonResult(ClientQuery.InsertQuery, new NpgsqlParameter[]
         {
