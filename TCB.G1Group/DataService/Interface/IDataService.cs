@@ -4,9 +4,9 @@ public interface IDataService<T>
 {
     public Task<T> Create(T data);
 
-    public Task<T> Update(T data);
+    public Task<T> Update(long Id,T data);
 
-    public Task<T> Delete(T data);
+    public Task<T> Delete(long Id);
 
     public Task<List<T>> GetAll();
 
