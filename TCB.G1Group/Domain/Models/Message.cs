@@ -3,7 +3,7 @@ using TCB.G1Group.Domain.Enums;
 
 namespace TCB.G1Group.Domain.Models;
 
-public class Message
+public class Message:ModelBase
 {
     [Description("from_id")]
     public long FromId { get; set; }
