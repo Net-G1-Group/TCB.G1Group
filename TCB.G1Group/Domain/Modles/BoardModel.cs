@@ -3,16 +3,16 @@ using TCB.G1Group.Domain.Enums;
 
 namespace TCB.G1Group.Domain.Modles;
 
-public class BoardModel
+public class BoardModel:ModelBase
 {
     [Description("board_id")]
-    public long BoardId { get; set; }
+    public ModelBase BoardId { get; set; }
     
     [Description("nickname")]
     public string NickName { get; set; }
     
     [Description("owner_id")]
-    public long OwnerId { get; set; }
+    public ModelBase OwnerId { get; set; }
     
     [Description("board_status")]
     public BoardStatus BoardStatus { get; set; }
