@@ -4,7 +4,7 @@ using TCB.G1Group.Domain.Models;
 
 namespace TCB.G1Group.DataService;
 
-public class BoardDataService:IBoardDataService
+public class BoardDataService:DataProvider,IBoardDataService
 {
     public async Task<BoardModel> Create(BoardModel data)
     {
@@ -34,5 +34,14 @@ public class BoardDataService:IBoardDataService
     public async Task<BoardModel> FindById(long Id)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<BoardModel> FindByNickName(string nickName)
+    {
+        throw new NotImplementedException();
+    }
+
+    public BoardDataService(string connectionString) : base(connectionString)
+    {
     }
 }
