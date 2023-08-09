@@ -11,6 +11,11 @@ public class BoardDataService:IBoardDataService
         throw new NotImplementedException();
     }
 
+    public async Task<BoardModel> Update(BoardModel data)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<BoardModel> UpDate(BoardModel data)
     {
         throw new NotImplementedException();
