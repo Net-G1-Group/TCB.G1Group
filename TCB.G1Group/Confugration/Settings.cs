@@ -1,4 +1,4 @@
-namespace TCB.G1Group;
+namespace TCB.G1Group.Confugration;
 
 public static class Settings
 {
