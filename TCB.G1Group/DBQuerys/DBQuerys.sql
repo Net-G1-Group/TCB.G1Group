@@ -13,10 +13,9 @@ create table clients
 (
     id serial PRIMARY KEY,
     user_id          bigint,
-    telegram_chat_id bigint,
     nickname         varchar(30),
     is_premium       bool,
-    status           bigint,
+    status           int,
     FOREIGN KEY (user_id)
         references users (id)
 );
@@ -27,7 +26,7 @@ create table anonym_chats
     create_date date,
     from_id     bigint,
     to_id       bigint,
-    state       bigint,
+    state       int,
     FOREIGN KEY (from_id)
         REFERENCES clients (id),
     FOREIGN KEY (to_id)
@@ -52,7 +51,7 @@ create table messages
     from_id  bigint,
     message  text,
     chat_id  bigint,
-    type     bigint,
+    message_type     bigint,
     board_id bigint,
     FOREIGN KEY (from_id)
         REFERENCES clients (id),
