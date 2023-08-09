@@ -30,7 +30,7 @@ public class ClientDataService : DataProvider, IDataService<Client>  , IClientDa
 
     public async Task<Client> Update(Client data)
     {
-        var result = await this.ExecuteNonResult(ClientQuery.InsertQuery, new NpgsqlParameter[]
+        var result = await this.ExecuteNonResult(ClientQuery.UpdateQuery, new NpgsqlParameter[]
         {
             new NpgsqlParameter("@p0", data.Id),
             new NpgsqlParameter("@p1", data.UserId),
