@@ -22,7 +22,8 @@ public class BoardDataService:DataProvider,IBoardDataService
         NpgsqlParameter[]? parameters = new NpgsqlParameter[]
         {
             new NpgsqlParameter("@p1",data.NickName),
-            new NpgsqlParameter("@p2",data.BoardStatus),
+            new NpgsqlParameter("@p2",data.OwnerId),
+            new NpgsqlParameter("@p3",data.BoardStatus)
         };
         var reader = await base.ExecuteWithResult(BoardModelQuery.insertQuery, parameters);
         return await this.NpgSqlDataReaderToBoardModel(reader);
@@ -41,9 +42,10 @@ public class BoardDataService:DataProvider,IBoardDataService
         };
         NpgsqlParameter[]? parameters = new NpgsqlParameter[]
         {
-            new NpgsqlParameter("@p1",data.NickName),
             new NpgsqlParameter("@p0",Id),
-            new NpgsqlParameter("@p2",data.BoardStatus)
+            new NpgsqlParameter("@p1",data.NickName),
+            new NpgsqlParameter("@p2",data.OwnerId),
+            new NpgsqlParameter("@p3",data.BoardStatus)
         };
         var reader = await base.ExecuteWithResult(BoardModelQuery.updateQuery, parameters);
         return await this.NpgSqlDataReaderToBoardModel(reader);
@@ -56,6 +58,16 @@ public class BoardDataService:DataProvider,IBoardDataService
             new NpgsqlParameter("@p0",Id)
         };
         var reader = await base.ExecuteWithResult(BoardModelQuery.deleteQuery, parameters);
+        return await this.NpgSqlDataReaderToBoardModel(reader);
+    }
+    public async Task<BoardModel> Stop(long Id)
+    {
+        NpgsqlParameter[]? parameters = new NpgsqlParameter[]
+        {
+            new NpgsqlParameter("@p0",Id),
+            new NpgsqlParameter("@p3",BoardStatus.Stopped),
+        };
+        var reader = await base.ExecuteWithResult(BoardModelQuery.stopQuery, parameters);
         return await this.NpgSqlDataReaderToBoardModel(reader);
     }
 
