@@ -5,16 +5,18 @@ using Telegram.Bot.Types;
 
 namespace TCB.G1Group.TelegramBot;
 
-public class Extension
+public static class ContextExtensions
 {
-    public static async Task Forward(Context context, ControllerManager controllerManager)
+    public static async Task Forward(this Context context, Context manager, ControllerManager controllerManager)
     {
         ControllerBase baseController = await controllerManager.GetControllerBySessionData(context.Session);
         await baseController.Handle(context);
     }
     
-    public static async Task<Message> SendTextMessage(Context context, string text)
+    public static async Task<Message> SendTextMessage(this Context context, Context context1, string text)
     {
         return await TelegramBot._client.SendTextMessageAsync(context.Update.Message!.Chat.Id, text);
     }
+
+    
 }
