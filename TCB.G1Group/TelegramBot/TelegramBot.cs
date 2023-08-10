@@ -52,7 +52,7 @@ public class TelegramBot
         
         this.updateHandlers.Insert(this.updateHandlers.Count, async (context, token) =>
         {
-            await context.Forward(context,this.controllerManager);
+            await context.Forward(this.controllerManager);
         });
         
         await StartReceiver();

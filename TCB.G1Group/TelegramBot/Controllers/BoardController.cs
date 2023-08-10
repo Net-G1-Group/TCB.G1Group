@@ -21,14 +21,14 @@ public class BoardController:ControllerBase
 
     public async Task Start(Context context)
     {
-       await context.SendTextMessage(context, "Create Board /CreateBoard\nList All Board /ListAllBoard");
+       await context.SendTextMessage("Create Board /CreateBoard\nList All Board /ListAllBoard");
     }
 
     public async Task Create(Context context)
     {
         if (string.IsNullOrEmpty(context.Update.Message?.Text))
         {
-            await context.SendTextMessage(context, "Place Enter Nick Name");
+            await context.SendTextMessage("Place Enter Nick Name");
             return;
         }
         
@@ -39,7 +39,7 @@ public class BoardController:ControllerBase
         // }
         //context.Session.BoardView.Id=board.Id
         context.Session.Action = null;
-        await context.SendTextMessage(context, "successful");
+        await context.SendTextMessage( "successful");
     }
 
     public async Task PrintBoard(Context context)
@@ -47,7 +47,7 @@ public class BoardController:ControllerBase
         //foreach(var board in _boardService.GetAll())
         //  Extension.SendTextMessage(context, board.NickName);
 
-        await context.SendTextMessage(context, "write on the board\n/yes or /no");
+        await context.SendTextMessage( "write on the board\n/yes or /no");
         context.Session.Action = nameof(BoardStepFirst);
     }
 
@@ -55,7 +55,7 @@ public class BoardController:ControllerBase
     {
         if (string.IsNullOrEmpty(context.Update.Message?.Text))
         {
-            await context.SendTextMessage(context, "write on the board\n/yes or /no");
+            await context.SendTextMessage( "write on the board\n/yes or /no");
             return;
         }
 
@@ -66,11 +66,11 @@ public class BoardController:ControllerBase
 
         if (context.Update.Message.Text != "/yes")
         {
-            await context.SendTextMessage(context, "place write on the board\n/yes or /no");
+            await context.SendTextMessage( "place write on the board\n/yes or /no");
             return;
         }
 
-        await context.SendTextMessage(context, "you can write thank you");
+        await context.SendTextMessage("you can write thank you");
         context.Session.Action = nameof(WriteToBoard);
         
     }
@@ -79,7 +79,7 @@ public class BoardController:ControllerBase
     {
         if (string.IsNullOrEmpty(context.Update.Message?.Text))
         {
-            await context.SendTextMessage(context, "you can write thank you");
+            await context.SendTextMessage( "you can write thank you");
             return;   
         }
         

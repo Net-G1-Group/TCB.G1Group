@@ -40,7 +40,7 @@ public class LoginControler:ControllerBase
 
     public async Task LoginStepStart(Context context)
     {
-        await context.SendTextMessage(context, "Enter your Phone Number ");
+        await context.SendTextMessage( "Enter your Phone Number ");
         context.Session.Action = nameof(LoginStepFirst);
     }
 
@@ -50,11 +50,11 @@ public class LoginControler:ControllerBase
 
         if (string.IsNullOrEmpty(context.Update.Message.Contact.PhoneNumber))
         {
-            await context.SendTextMessage(context, "Enter your Phone Number ");
+            await context.SendTextMessage( "Enter your Phone Number ");
             return;
         }
 
-        await context.SendTextMessage(context, "Enter Your Password");
+        await context.SendTextMessage( "Enter Your Password");
         context.Session.Action=nameof(LoginStepLast);
     }
 
@@ -63,14 +63,14 @@ public class LoginControler:ControllerBase
         context.Session.AuthView.Password = context.Update!.Message!.Text;
         if (string.IsNullOrEmpty(context.Update.Message.Text))
         {
-            await context.SendTextMessage(context, "Enter Your Password");
+            await context.SendTextMessage( "Enter Your Password");
             return;
         }
 
         context.Session.Controller = null;
         context.Session.Action = null;
-        await context.SendTextMessage(context, "Successful");
-        await context.Forward(context, _controllerManager);
+        await context.SendTextMessage( "Successful");
+        await context.Forward( _controllerManager);
     }
     
 }

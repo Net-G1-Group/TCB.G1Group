@@ -21,36 +21,36 @@ public class HomeController:ControllerBase
                     case "/start":
                         await this.Start(context);
                         break;
-                    case "/login":
-                        await this.Login(context);
-                        break;
-                    case "/register":
-                        await this.Register(context);
-                        break;
+                    // case "/login":
+                    //     await this.Login(context);
+                    //     break;
+                    // case "/register":
+                    //     await this.Register(context);
+                    //     break;
                 }
         }
     }
 
     public async Task Start(Context context)
     {
-        await context.SendTextMessage(context,"Welcome!");
+        await context.SendTextMessage("Welcome!");
     }
     
-    public async Task Login(Context context)
-    {
-        context.Session.Controller = nameof(AuthController);
-        context.Session.Action = nameof(AuthController.LoginUserStart);
-
-        await context.Forward(context,this._controllerManager);
-    }
-
-    public async Task Register(Context context)
-    {
-        context.Session.Controller = nameof(AuthController);
-        context.Session.Action = nameof(AuthController.RegistrationStart);
-
-        await context.Forward(context,this._controllerManager);
-    }
+    // public async Task Login(Context context)
+    // {
+    //     context.Session.Controller = nameof(AuthController);
+    //     context.Session.Action = nameof(AuthController.LoginUserStart);
+    //
+    //     await context.Forward(context,this._controllerManager);
+    // }
+    //
+    // public async Task Register(Context context)
+    // {
+    //     context.Session.Controller = nameof(AuthController);
+    //     context.Session.Action = nameof(AuthController.RegistrationStart);
+    //
+    //     await context.Forward(context,this._controllerManager);
+    // }
 
     
     
