@@ -15,7 +15,7 @@ public class ClientDashBoardController : ControllerBase, IClientDashBoardControl
 
     public async Task StartDashBoard(Context context)
     {
-        await Extension.SendTextMessage(context, "Quyidagilardan birini tanlang : " +
+        await context.SendTextMessage("Quyidagilardan birini tanlang : " +
                                                  "\n /CreateBoard\t/CreadAnonymChat\t/Settings");
         context.Session.Action = nameof(HandleAction);
     }
@@ -23,7 +23,7 @@ public class ClientDashBoardController : ControllerBase, IClientDashBoardControl
     public async Task CreateBoard(Context context)
     {
         await _boardController.Create(context);
-        await Extension.SendTextMessage(context, "Board is created successfully");
+        await context.SendTextMessage( "Board is created successfully");
     }
 
     public async Task CreateAnonymChat(Context context)
