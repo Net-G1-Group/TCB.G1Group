@@ -2,6 +2,7 @@ using TCB.G1Group.DataService;
 using TCB.G1Group.Domain.Enums;
 using TCB.G1Group.Domain.Models;
 using TCB.G1Group.Domain.Modles;
+using TCB.G1Group.Domain.ViewModels;
 
 namespace TCB.G1Group;
 
@@ -14,13 +15,13 @@ public class AuthService
         _userDataService = userDataService;
         _clientDataService = clientDataService;
     }
-    public async Task RegisterUser(User userRegistration)
+    public async Task RegisterUser(AuthView userRegistration)
     {
         var User = await _userDataService.Create(new User()
         {
             Password = userRegistration.Password,
             PhoneNumber = userRegistration.PhoneNumber,
-            TelegramClientId = userRegistration.TelegramClientId
+            
         });
         if (User is null)
             throw new Exception("Unable to insert user");
@@ -35,7 +36,7 @@ public class AuthService
     }
 
 
-    public async Task<Client> Login(User user)
+    public async Task<Client> Login(AuthView user)
     {
         var userInfo = await _userDataService.FindPhoneAndPassword(user.PhoneNumber, user.Password);
 
