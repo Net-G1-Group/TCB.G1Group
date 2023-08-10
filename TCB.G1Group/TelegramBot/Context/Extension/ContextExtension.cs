@@ -11,6 +11,11 @@ public static class Extension
     public static async Task Forward(this Context context, ControllerManager controllerManager)
     {
         ControllerBase baseController = await controllerManager.GetControllerBySessionData(context.Session );
+        if (context.Session.Action is null)
+        {
+            context.Session.Controller = nameof(HomeController);
+            context.Session.Action = nameof(HomeController.Start);
+        }
         await baseController.Handle(context);
     }
     

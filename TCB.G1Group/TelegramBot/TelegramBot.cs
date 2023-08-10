@@ -13,7 +13,6 @@ public class TelegramBot
    
 
     public static TelegramBotClient _client { get; set; }
-    private UserDataService _userDataService { get; set; }
 
     private SessionManager SessionManager { get; set; }
     private ControllerManager controllerManager { get; set; }
@@ -24,9 +23,8 @@ public class TelegramBot
     {
         _client = new TelegramBotClient(Settings.TelegramBotToken);
 
-        _userDataService = new UserDataService(Settings.dbConnectionString);
             controllerManager = new ControllerManager();
-        SessionManager = new SessionManager(_userDataService);
+        SessionManager = new SessionManager(controllerManager._userDataService);
         
         updateHandlers = new List<Func<Context, CancellationToken, Task>>();
     }

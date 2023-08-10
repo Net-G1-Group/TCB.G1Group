@@ -63,7 +63,7 @@ public class AuthController:ControllerBase
     public async Task RegistrationPassword(Context context)
     {
         context.Session.AuthView.Password = context.Update.Message.Text;
-        context.Session.AuthView.ChatId = Convert.ToInt64(context.Update.Message.Text);
+        context.Session.AuthView.ChatId = context.Update.Message.Chat.Id;
 
         await _authService.RegisterUser(context.Session.AuthView);
         
@@ -76,12 +76,12 @@ public class AuthController:ControllerBase
     }
 
 
-    protected override Task UpdateHandler(Context context)
+    protected override Task HandleAction(Context context)
     {
         return Task.CompletedTask;
     }
 
-    protected override async Task HandleAction(Context context)
+    protected override async Task UpdateHandler(Context context)
     {
         switch (context.Session.Action)
         {
@@ -93,14 +93,11 @@ public class AuthController:ControllerBase
             case nameof(RegistrationPhoneNumber):
             {
                 await RegistrationPhoneNumber(context);
-
                 break;
             }
             case nameof(RegistrationPassword):
             {
                 await RegistrationPassword(context);
-
-
                 break;
             }
             case nameof(LoginUserStart):

@@ -15,8 +15,8 @@ public abstract class ControllerBase
 
     public virtual async Task Handle(Context context)
     {
-        await UpdateHandler(context);
         await HandleAction(context);
+        await UpdateHandler(context);
     }
 
     protected abstract Task UpdateHandler(Context context);

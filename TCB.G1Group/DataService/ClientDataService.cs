@@ -16,16 +16,15 @@ public class ClientDataService : DataProvider, IDataService<Client>  , IClientDa
     
     public async Task<Client> Create(Client data)
     {
-        var result = await this.ExecuteNonResult(ClientQuery.SelectQuyer, new NpgsqlParameter[]
+        var result = await this.ExecuteWithResult(ClientQuery.InsertQuery, new NpgsqlParameter[]
         {
-            new NpgsqlParameter("@p0", data.Id),
             new NpgsqlParameter("@p1", data.UserId),
             new NpgsqlParameter("@p2", data.NickName),
             new NpgsqlParameter("@p3", data.Status),
             new NpgsqlParameter("@p4", data.IsPremium)
         });
-
-        return await FindById(data.Id);
+        
+        return  ReaderDataModel(result);
     }
 
     public async Task<Client> Update( long id,Client data)
@@ -35,7 +34,7 @@ public class ClientDataService : DataProvider, IDataService<Client>  , IClientDa
             new NpgsqlParameter("@p0", id),
             new NpgsqlParameter("@p1", data.UserId),
             new NpgsqlParameter("@p2", data.NickName),
-            new NpgsqlParameter("@p3", data.Status),
+            new NpgsqlParameter("@p3", (int)data.Status),
             new NpgsqlParameter("@p4", data.IsPremium)
         });
 
@@ -120,7 +119,7 @@ public class ClientDataService : DataProvider, IDataService<Client>  , IClientDa
         Client client = new Client()
         {
             Id = reader.GetInt32(0),
-            UserId = reader.GetInt32(1),
+            UserId = reader.GetInt64(1),
             NickName = reader.GetString(2),
             Status = (ClientStatus)reader.GetInt32(3),
             IsPremium = reader.GetBoolean(4)

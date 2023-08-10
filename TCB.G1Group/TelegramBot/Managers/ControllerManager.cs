@@ -10,15 +10,17 @@ public class ControllerManager
    
     private BoardController _boardController;
     private readonly HomeController _homeController;
-    private readonly UserDataService _userDataService;
+    public readonly UserDataService _userDataService;
     private readonly ClientDataService _clientDataService;
     private readonly AuthService _authService;
+    private readonly AuthController _authController;
 
     public ControllerManager()
     {
         _userDataService = new UserDataService(Settings.dbConnectionString);
          _clientDataService = new ClientDataService(Settings.dbConnectionString);
          _authService = new AuthService(_userDataService, _clientDataService);
+        _authController = new AuthController(_authService,this);
         
         _boardController = new BoardController(this);
         _homeController = new HomeController(this);
@@ -29,8 +31,11 @@ public class ControllerManager
         switch (session.Controller)
         {
            
-            case nameof(_boardController):
+            case nameof(BoardController):
                 return _boardController;
+            case nameof(AuthController):
+                return _authController;
+            
             
         }
         

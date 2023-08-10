@@ -21,12 +21,15 @@ public class HomeController:ControllerBase
                     case "/start":
                         await this.Start(context);
                         break;
-                    // case "/login":
-                    //     await this.Login(context);
-                    //     break;
-                    // case "/register":
-                    //     await this.Register(context);
-                    //     break;
+                    case "/login":
+                        await this.Login(context);
+                        break;
+                    case "/register":
+                        await this.Register(context);
+                        break;
+                    case nameof(Register):
+                        await this.Register(context);
+                        break;
                 }
         }
     }
@@ -34,29 +37,39 @@ public class HomeController:ControllerBase
     public async Task Start(Context context)
     {
         await context.SendTextMessage("Welcome!");
+        context.Session.Action = nameof(HandleAction);
     }
     
-    // public async Task Login(Context context)
-    // {
-    //     context.Session.Controller = nameof(AuthController);
-    //     context.Session.Action = nameof(AuthController.LoginUserStart);
-    //
-    //     await context.Forward(context,this._controllerManager);
-    // }
-    //
-    // public async Task Register(Context context)
-    // {
-    //     context.Session.Controller = nameof(AuthController);
-    //     context.Session.Action = nameof(AuthController.RegistrationStart);
-    //
-    //     await context.Forward(context,this._controllerManager);
-    // }
+    public async Task Login(Context context)
+    {
+        context.Session.Controller = nameof(AuthController);
+        context.Session.Action = nameof(AuthController.LoginUserStart);
+    
+        await context.Forward(_controllerManager);
+    }
+    
+    public async Task Register(Context context)
+    {
+        context.Session.Controller = nameof(AuthController);
+        context.Session.Action = nameof(AuthController.RegistrationStart);
+    
+        await context.Forward(_controllerManager);
+    }
 
     
     
     
     protected override async Task HandleAction(Context context)
     {
-        throw new NotImplementedException();
+        switch (context.Session.Action)
+        {
+            case nameof(Register):
+                Console.WriteLine(nameof(Register));
+                await Register(context);
+                break;
+            case nameof(Login):
+                await Login(context);
+                break;
+        }
     }
 }
