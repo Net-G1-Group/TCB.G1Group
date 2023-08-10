@@ -3,7 +3,7 @@ create schema if not exists public;
 create table users
 (
     id serial PRIMARY KEY,
-    telegram_client_id int,
+    telegram_client_id bigint,
     password           varchar(24),
     phone_number       varchar(13)
 );
@@ -12,8 +12,7 @@ create table users
 create table clients
 (
     id serial PRIMARY KEY,
-    user_id          int,
-    telegram_chat_id int,
+    user_id          bigint,
     nickname         varchar(30),
     is_premium       bool,
     status           int,
@@ -23,10 +22,10 @@ create table clients
 
 create table anonym_chats
 (
-    id          serial PRIMARY key,
+    id         serial PRIMARY key,
     create_date date,
-    from_id     int,
-    to_id       int,
+    from_id     bigint,
+    to_id       bigint,
     state       int,
     FOREIGN KEY (from_id)
         REFERENCES clients (id),
@@ -39,7 +38,7 @@ create table boards
 (
     id       serial PRIMARY KEY,
     nickname varchar(30),
-    owner_id int,
+    owner_id bigint,
     board_status int,
     FOREIGN KEY (owner_id)
         REFERENCES clients (id)
@@ -49,11 +48,11 @@ create table boards
 create table messages
 (
     id       serial PRIMARY key,
-    from_id  int,
+    from_id  bigint,
     message  text,
-    chat_id  int,
-    type     int,
-    board_id int,
+    chat_id  bigint,
+    message_type     int,
+    board_id bigint,
     message_state int,
     FOREIGN KEY (from_id)
         REFERENCES clients (id),
