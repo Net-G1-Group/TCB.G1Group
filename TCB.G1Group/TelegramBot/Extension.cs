@@ -2,6 +2,7 @@ using TCB.G1Group.TelegramBot.Controllers;
 using TCB.G1Group.TelegramBot.Managers;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace TCB.G1Group.TelegramBot;
 
@@ -13,8 +14,8 @@ public class Extension
         await baseController.Handle(context);
     }
     
-    public static async Task<Message> SendTextMessage(Context context, string text)
+    public static async Task<Message> SendTextMessage(Context context, string text,IReplyMarkup replyMarkup = null)
     {
-        return await TelegramBot._client.SendTextMessageAsync(context.Update.Message!.Chat.Id, text);
+        return await TelegramBot._client.SendTextMessageAsync(context.Update.Message!.Chat.Id, text,replyMarkup : replyMarkup);
     }
 }
