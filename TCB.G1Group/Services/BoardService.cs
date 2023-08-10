@@ -71,6 +71,6 @@ public class BoardService:IBoardService
 
     public async Task<BoardModel> FindBoardByNickName(string nickName)
     {
-        return  boardDataService.GetAll().Result.Find(x=>x.NickName == nickName);
+        return await boardDataService.FindByNickName(nickName);
     }
 }
