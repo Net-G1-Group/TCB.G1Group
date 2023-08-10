@@ -11,9 +11,11 @@ public class Extension
     {
         ControllerBase baseController = await controllerManager.GetControllerBySessionData(context.Session);
         await baseController.Handle(context);
-    }    
+    }
+    
     public static async Task<Message> SendTextMessage(Context context, string text)
     {
         return await TelegramBot._client.SendTextMessageAsync(context.Update.Message!.Chat.Id, text);
     }
+    
 }
