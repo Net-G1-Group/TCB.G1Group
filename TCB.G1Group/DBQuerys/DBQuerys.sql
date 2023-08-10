@@ -53,6 +53,7 @@ create table messages
     chat_id  bigint,
     message_type     int,
     board_id bigint,
+    message_state int,
     FOREIGN KEY (from_id)
         REFERENCES clients (id),
     FOREIGN KEY (board_id)
