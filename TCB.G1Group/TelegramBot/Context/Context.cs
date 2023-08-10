@@ -3,8 +3,8 @@ using Telegram.Bot.Types;
 
 namespace TCB.G1Group.TelegramBot;
 
-public class Context
+public class Context:ContextBase
 {
     public Session Session { get; set; }
-    public Update  Update { get; set; }
+ 
 }

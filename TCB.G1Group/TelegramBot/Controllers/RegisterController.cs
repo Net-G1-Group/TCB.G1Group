@@ -42,7 +42,7 @@ public class RegisterController:ControllerBase
 
     public async Task ResisterStepStart(Context context)
     {
-        await Extension.SendTextMessage(context, "Enter Your Phone Number");
+        await context.SendTextMessage(context, "Enter Your Phone Number");
         context.Session.Action = nameof(RegisterStepFirst);
     }
 
@@ -50,12 +50,12 @@ public class RegisterController:ControllerBase
     {
         if (string.IsNullOrEmpty(context.Update.Message?.Text))
         {
-            await Extension.SendTextMessage(context, "Enter Your Phone Number");
+            await context.SendTextMessage(context, "Enter Your Phone Number");
             return;
         }
         context.Session.AuthView.PhoneNumber = context.Update.Message.Text;
         context.Session.Action = nameof(RegisterStepLast);
-        await Extension.SendTextMessage(context, "Enter Your Password");
+        await context.SendTextMessage(context, "Enter Your Password");
 
     }
 
@@ -63,7 +63,7 @@ public class RegisterController:ControllerBase
     {
         if (string.IsNullOrEmpty(context.Update.Message?.Text))
         {
-            await Extension.SendTextMessage(context, "Enter Your Password");
+            await context.SendTextMessage(context, "Enter Your Password");
             return;
         }
 
@@ -75,7 +75,7 @@ public class RegisterController:ControllerBase
 
         context.Session.Action = null;
         context.Session.Controller = null;
-        await Extension.Forward(context,_controllerManager);
+        await context.Forward(context,_controllerManager);
     }
     
 }
