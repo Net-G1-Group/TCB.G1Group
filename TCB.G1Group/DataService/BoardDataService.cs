@@ -10,12 +10,24 @@ namespace TCB.G1Group.DataService;
 
 public class BoardDataService:DataProvider,IBoardDataService
 {
-    private readonly IMessageDataService _messageDataService;
+    public readonly IMessageDataService _messageDataService;
 
     public BoardDataService(string connectionString,IMessageDataService messageDataService) : base(connectionString)
     {
         _messageDataService = messageDataService;
     }
+    // public async Task<BoardModel?> GetById(long id)
+    // {
+    //     var reader = await this.ExecuteWithResult(this.selectByIdQuery, new NpgsqlParameter[]
+    //     {
+    //         new NpgsqlParameter("@p0", id)
+    //     });
+    //     List<BoardModel> result = new List<BoardModel>();
+    //     while (reader.Read())
+    //         result.Add(this.ReaderDataToModel(reader).Result);
+    //
+    //     return result.ElementAtOrDefault(0);
+    // }
 
     public async Task<BoardModel> Create(BoardModel data)
     {

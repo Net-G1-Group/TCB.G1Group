@@ -17,8 +17,8 @@ public class ControllerManager
 
     public ControllerManager()
     {
-        _userDataService = new UserDataService(Settings.com);
-         _clientDataService = new ClientDataService(Settings.com);
+        _userDataService = new UserDataService(Settings.dbConnectionString);
+         _clientDataService = new ClientDataService(Settings.dbConnectionString);
          _authService = new AuthService(_userDataService, _clientDataService);
         _loginController = new LoginControler(this,_authService);
         _registerController = new RegisterController(this,_authService);
