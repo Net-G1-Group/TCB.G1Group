@@ -22,7 +22,7 @@ public class AuthController:ControllerBase
     {
         context.Session.AuthView.PhoneNumber = context.Update.Message.Text;
 
-        await context.SendTextMessage(context, "Enter your password: ");
+        await context.SendTextMessage( context,"Enter your password: ");
         context.Session.Action = nameof(LoginUserPassword);
     }
 
@@ -38,7 +38,7 @@ public class AuthController:ControllerBase
         if (client is not null)
             await context.SendTextMessage(context,$"Client id: {client.Id}\n Nickname: {client.NickName}");
         else {
-            await context.SendTextMessage(context, "User not found!");
+            await context.SendTextMessage( context ,"User not found!");
         }
         context.Session.Controller = null;
         context.Session.Action = null;
