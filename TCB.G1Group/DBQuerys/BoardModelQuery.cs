@@ -18,4 +18,6 @@ public static class BoardModelQuery
         $"(@p1,@p2);";
     
     public static string deleteQuery = $"DELETE FROM {tableName} WHERE id = @p0 ;";
+    
+    public static string stopQuery = $"UPDATE {tableName} SET board_status = @p3 WHERE id = @p0 ;";
 }
