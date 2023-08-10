@@ -21,10 +21,9 @@ public class AuthService
         {
             Password = userRegistration.Password,
             PhoneNumber = userRegistration.PhoneNumber,
+            TelegramClientId = userRegistration.ChatId
           
         });
-        if (User is null)
-            throw new Exception("Unable to insert user");
         await _clientDataService.Create(new Client()
         {
             UserId = User.Id,
@@ -33,6 +32,8 @@ public class AuthService
           
             IsPremium = false,
         });
+        if (User is null)
+            throw new Exception("Unable to insert user");
     }
 
 

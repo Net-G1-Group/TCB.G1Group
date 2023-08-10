@@ -12,4 +12,10 @@ public class Session
     public User? user { get; set; }
     public BoardView BoardView { get; set; }
     public AuthView AuthView { get; set; }
+
+    public Session()
+    {
+        AuthView = new AuthView();
+        BoardView = new BoardView();
+    }
 }
