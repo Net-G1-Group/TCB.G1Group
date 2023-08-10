@@ -13,8 +13,7 @@ public static class MessageDataQuery
     
     public static string UpadeteQuery = $"UPDATE {_tableName} SET message_state = @p6,message = @p2 WHERE id = @p0;";
     
-    public static string InsertQuery = $"INSERT INTO {_tableName} (from_id,message,chat_id,type,board_id,message_state) VALUES " +
-                                       $"                           ( @p1, @p2,@p3,@p4,@p5,@p6)";
+    public static string InsertQuery = $"INSERT INTO {_tableName} (from_id,message,chat_id,message_type,board_id,message_state) VALUES ( @p1, @p2,@p3,@p4,@p5,@p6)";
     public static string DeleteQuery = $"DELETE FROM {_tableName} WHERE id = @p0";
     
 }

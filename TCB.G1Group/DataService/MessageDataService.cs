@@ -148,11 +148,11 @@ public class MessageDataService : DataProvider, IMessageDataService
     private async Task<Message> NpgSqlDataReaderToMessage(NpgsqlDataReader reader) => new Message
     {
         Id = reader.GetInt32(0),
-        FromId = reader.GetInt32(1),
+        FromId = reader.GetInt64(1),
         _Message = reader.GetString(2),
-        ChatId = reader.GetInt32(3),
+        ChatId = reader.GetInt64(3),
         Type = (MessageType)reader.GetInt32(4),
-        BoardId = reader.GetInt32(5),
+        BoardId = reader.GetInt64(5),
         State = (MessageState)reader.GetInt32(6)
     };
 }
