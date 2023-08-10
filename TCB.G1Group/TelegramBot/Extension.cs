@@ -14,8 +14,8 @@ public class Extension
         await baseController.Handle(context);
     }
     
-    public static async Task<Message> SendTextMessage(Context context, string text,IReplyMarkup replyMarkup = null)
+    public static async Task<Message> SendTextMessage(Context context, string text)
     {
-        return await TelegramBot._client.SendTextMessageAsync(context.Update.Message!.Chat.Id, text,replyMarkup : replyMarkup);
+        return await TelegramBot._client.SendTextMessageAsync(context.Update.Message!.Chat.Id, text);
     }
 }
